@@ -61,14 +61,9 @@ public class Tasks {
 
     public void task_4()
     {
-        System.out.print("len = ");
-        int len = in.nextInt();
-        int[] mass = new int[len];
-        System.out.println("array[] = ");
-        for (int i = 0; i < len; i++)
-        {
-            mass[i] = in.nextInt();
-        }
+        int[] mass = GetArray();
+        int len = mass.length;
+
         System.out.println("Result: ");
         for(int i = 0;i < len; i++)
         {
@@ -83,6 +78,126 @@ public class Tasks {
 
     public void task_5()
     {
+        int[] mass = GetArray();
+        int len = mass.length;
 
+        boolean isUp;
+        int currPos;
+        int maxLen = 0;
+        for(int i = 0; i < len; i++)
+        {
+            isUp = true;
+            currPos = 1;
+            for(int j = i + 1; (j < len) && isUp; j++)
+            {
+                if(mass[j - 1] < mass[j]) {currPos++;}
+                else {isUp = false;}
+            }
+
+            maxLen = (maxLen > currPos) ? maxLen : currPos;
+        }
+
+        System.out.println(maxLen);
     }
+
+    public void task_6()
+    {
+        int[] mass = GetArray();
+        int len = mass.length;
+
+        int pos = 0;
+        for (int i = 0; i < len; i++)
+        {
+            for(int j = 0; j < len; j++)
+            {
+                System.out.print(mass[(j+pos) % len]);
+            }
+            pos++;
+            System.out.println();
+        }
+    }
+
+    public void task_7()
+    {
+        System.out.print("len=");
+        int len = in.nextInt();
+        double[] arr = new double[len];
+        System.out.print("array[]=");
+        for (int i = 0; i < len; i++) {
+            arr[i] = in.nextDouble();
+        }
+
+        int i = 0;
+        while (i < len-1)
+        {
+            if(arr[i] <= arr[i + 1])
+                i++;
+            else
+            {
+                double temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+
+                if(i != 0)
+                    i--;
+            }
+        }
+
+        for (i = 0; i < len; i++)
+        {
+            System.out.print(arr[i]);
+            System.out.print("  ");
+        }
+    }
+
+    public void task_8() {
+        System.out.print("len A=");
+        int lenA = in.nextInt();
+        double[] arrA = new double[lenA];
+        System.out.print("array A[]=");
+        for (int i = 0; i < lenA; i++) {
+            arrA[i] = in.nextDouble();
+        }
+
+        System.out.print("len B=");
+        int lenB = in.nextInt();
+        double[] arrB = new double[lenB];
+        System.out.print("array B[]=");
+        for (int i = 0; i < lenB; i++) {
+            arrB[i] = in.nextDouble();
+        }
+
+
+        int posA = 0, posB = 0, index = 0;
+
+        while (posA < lenA) {
+            if (arrB[posB] < arrA[posA]) {
+                System.out.print(index);
+                System.out.print("  ");
+                posB++;
+            } else {
+                posA++;
+                index++;
+            }
+
+        }
+
+        while (posB != lenB) {
+            System.out.print(index);
+            System.out.print("  ");
+            posB++;
+        }
+    }
+
+    private int[] GetArray()
+    {
+        System.out.print("len = ");
+        int len = in.nextInt();
+        int[] result = new int[len];
+        System.out.println("array[] = ");
+        for (int i = 0; i < len; i++) { result[i] = in.nextInt(); }
+
+        return result;
+    }
+
 }
